@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>EstateAgency Bootstrap Template - Index</title>
+    <title>JiksDi Real Estate</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -137,7 +137,7 @@
                 <span></span>
                 <span></span>
             </button>
-            <a class="navbar-brand text-brand" href="index.html">Estate<span class="color-b">Agency</span></a>
+            <a class="navbar-brand text-brand" href="index.html">Jiksdi <span class="color-b">Agency</span></a>
 
             <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
                 <ul class="navbar-nav">
