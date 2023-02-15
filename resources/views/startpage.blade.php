@@ -615,7 +615,7 @@
                                             <strong>Phone: </strong> +54 356 945234
                                         </p>
                                         <p>
-                                            <strong>Email: </strong> agents@example.com
+                                            <strong>Email: </strong> {{config('company.contact.email1')}}
                                         </p>
                                     </div>
                                 </div>
@@ -987,10 +987,20 @@
                         <div class="w-footer-a">
                             <ul class="list-unstyled">
                                 <li class="color-a">
-                                    <span class="color-text-a">Phone .</span> contact@example.com
+                                    <span class="color-text-a">Phone .</span> {{config('company.contacts.phone1')}}
                                 </li>
                                 <li class="color-a">
-                                    <span class="color-text-a">Email .</span> +54 356 945234
+                                    <span class="color-text-a">Email .</span> {{config('company.contacts.email1')}}
+                                </li>
+                                <li class="color-a">
+                                    <span class="color-text-a">Address .</span>
+                                </li>
+                                <li class="color-a">
+                                    {{config('company.address.street')}}<br />
+                                    {{config('company.address.city')}}, {{config('company.address.province')}},
+                                </li>
+                                <li class="color-a">
+                                    {{config('company.address.country')}}, {{config('company.address.zip')}}
                                 </li>
                             </ul>
                         </div>

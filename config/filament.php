@@ -72,7 +72,8 @@ return [
     |
     */
 
-    'brand' => env('APP_NAME'),
+    'brand' => config('company.name'),
+    // 'brand' => env('APP_NAME'),
 
     /*
     |--------------------------------------------------------------------------
@@ -248,7 +249,7 @@ return [
             'groups' => [
                 'are_collapsible' => true,
             ],
-            'width' => 'full',
+            'width' => null,
             'collapsed_width' => null,
         ],
     ],
