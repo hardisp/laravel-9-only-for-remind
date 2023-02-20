@@ -60,30 +60,30 @@ class PropertyResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('description'),
-                Tables\Columns\TextColumn::make('country'),
-                Tables\Columns\TextColumn::make('city'),
-                Tables\Columns\TextColumn::make('address'),
-                Tables\Columns\TextColumn::make('price'),
-                Tables\Columns\TextColumn::make('sqm'),
-                Tables\Columns\TextColumn::make('bedrooms'),
-                Tables\Columns\TextColumn::make('bathrooms'),
-                Tables\Columns\TextColumn::make('garages'),
-                Tables\Columns\IconColumn::make('slider')
-                    ->boolean(),
-                Tables\Columns\IconColumn::make('visible')
-                    ->boolean(),
-                Tables\Columns\TextColumn::make('start_date')
-                    ->date(),
-                Tables\Columns\TextColumn::make('end_date')
-                    ->date(),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('title')->sortable()->searchable()->limit(12),
+                Tables\Columns\TextColumn::make('description')->sortable()->searchable()->limit(12),
+                Tables\Columns\TextColumn::make('country')->sortable()->searchable()->limit(12),
+                Tables\Columns\TextColumn::make('city')->sortable()->searchable()->limit(12),
+                Tables\Columns\TextColumn::make('price')->sortable()->money('us')->limit(12),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                    ->dateTime()->sortable(),
+                Tables\Columns\IconColumn::make('visible'),
+                //     Tables\Columns\TextColumn::make('address'),
+                //     Tables\Columns\TextColumn::make('sqm'),
+                //     Tables\Columns\TextColumn::make('bedrooms'),
+                //     Tables\Columns\TextColumn::make('bathrooms'),
+                //     Tables\Columns\TextColumn::make('garages'),
+                //     Tables\Columns\IconColumn::make('slider')
+                //         ->boolean(),
+                //         ->boolean(),
+                //     Tables\Columns\TextColumn::make('start_date')
+                //         ->date(),
+                //     Tables\Columns\TextColumn::make('end_date')
+                //         ->date(),
+                //     Tables\Columns\TextColumn::make('deleted_at')
+                //         ->dateTime(),
+                //     Tables\Columns\TextColumn::make('updated_at')
+                //         ->dateTime(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
@@ -98,14 +98,14 @@ class PropertyResource extends Resource
                 Tables\Actions\RestoreBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -114,8 +114,8 @@ class PropertyResource extends Resource
             'view' => Pages\ViewProperty::route('/{record}'),
             'edit' => Pages\EditProperty::route('/{record}/edit'),
         ];
-    }    
-    
+    }
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
