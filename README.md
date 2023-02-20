@@ -65,10 +65,94 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-## Note for Step By Step
+## NoteD for Step By Step What I've Done
 
 -   I create Property model:
 
 ```bash
 sail artisan make:model Property -mfc
+```
+
+-   I fill out the migration, factory, and seeder:
+
+```php
+// PATH: [...]/database/migrations/[Property_Migration_File].php
+// ...
+public function up()
+    {
+        Schema::create('properties', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->text('description');
+            $table->string('country');
+            $table->string('city');
+            $table->string('address');
+            $table->unsignedInteger('price');
+            $table->unsignedInteger('sqm');
+            $table->unsignedSmallInteger('bedrooms')->nullable();
+            $table->unsignedSmallInteger('bathrooms')->nullable();
+            $table->unsignedSmallInteger('garages')->nullable();
+            $table->boolean('slider')->default(false);
+            $table->boolean('visible')->default(true);
+            $table->date('start_date')->default('2022-01-01');
+            $table->date('end_date')->default('2023-01-01');
+            $table->softDeletesTz();
+            $table->timestamps();
+        });
+    }
+// ...
+
+```
+
+```php
+// PATH: [...]/database/factories/PropertyFactory.php
+// ...
+public function definition()
+    {
+        return [
+            'title' => $this->faker->realTextBetween(25, 45),
+            'description' => $this->faker->realTextBetween(100, 150),
+            'country' => $this->faker->country(),
+            'city' => $this->faker->city(),
+            'address' => $this->faker->address(),
+            'price' => rand(500, 5000) * 1000,
+            'sqm' => rand(150, 1500),
+            'bedrooms' => rand(3, 10),
+            'bathrooms' => rand(3, 6),
+            'garages' => rand(1, 5),
+        ];
+    }
+// ...
+
+```
+
+```php
+// PATH: [...]/database/seeders/DatabaseSeeder.php
+// ...
+public function run()
+    {
+        //...
+        \App\Models\Property::factory(50)->create();
+    }
+// ...
+
+```
+
+-   I setup Filament
+
+Go to [#Automatically generating forms and tables](https://filamentphp.com/docs/2.x/admin/resources/getting-started#automatically-generating-forms-and-tables) page
+
+Run this script:
+
+```bash
+sail composer require doctrine/dbal --dev
+```
+
+And then I create FIlament Resources:
+
+```
+sail artisan make:filament-resource Property --generate --soft-deletes --view
+
+# view only for dev purpose
+
 ```
